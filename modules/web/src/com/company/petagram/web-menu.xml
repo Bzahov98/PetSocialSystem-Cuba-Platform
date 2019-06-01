@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-petagram" insertBefore="administration">
+        <item screen="petagram_User.browse"/>
+        <item screen="petagram_Post.browse"/>
+        <item screen="petagram_Mainscreen"/>
+        <item screen="petagram_Comment.browse"/>
+    </menu>
+</menu-config>

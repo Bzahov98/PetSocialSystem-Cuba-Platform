@@ -1,0 +1,18 @@
+-- begin PETAGRAM_USER
+alter table PETAGRAM_USER add constraint FK_PETAGRAM_USER_ON_USER foreign key (USER_ID) references SEC_USER(ID)^
+alter table PETAGRAM_USER add constraint FK_PETAGRAM_USER_ON_PIC foreign key (PIC_ID) references SYS_FILE(ID)^
+create index IDX_PETAGRAM_USER_ON_USER on PETAGRAM_USER (USER_ID)^
+create index IDX_PETAGRAM_USER_ON_PIC on PETAGRAM_USER (PIC_ID)^
+-- end PETAGRAM_USER
+-- begin PETAGRAM_POST
+alter table PETAGRAM_POST add constraint FK_PETAGRAM_POST_ON_PIC foreign key (PIC_ID) references SYS_FILE(ID)^
+alter table PETAGRAM_POST add constraint FK_PETAGRAM_POST_ON_USER foreign key (USER_ID) references PETAGRAM_USER(ID)^
+create index IDX_PETAGRAM_POST_ON_PIC on PETAGRAM_POST (PIC_ID)^
+create index IDX_PETAGRAM_POST_ON_USER on PETAGRAM_POST (USER_ID)^
+-- end PETAGRAM_POST
+-- begin PETAGRAM_COMMENT
+alter table PETAGRAM_COMMENT add constraint FK_PETAGRAM_COMMENT_ON_USER foreign key (USER_ID) references PETAGRAM_USER(ID)^
+alter table PETAGRAM_COMMENT add constraint FK_PETAGRAM_COMMENT_ON_POST foreign key (POST_ID) references PETAGRAM_POST(ID)^
+create index IDX_PETAGRAM_COMMENT_ON_USER on PETAGRAM_COMMENT (USER_ID)^
+create index IDX_PETAGRAM_COMMENT_ON_POST on PETAGRAM_COMMENT (POST_ID)^
+-- end PETAGRAM_COMMENT

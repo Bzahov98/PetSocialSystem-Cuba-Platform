@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+
+    <view entity="petagram_User" name="user-edit-view" extends="_local">
+        <property name="user" view="_minimal"/>
+        <property name="pic" view="_minimal"/>
+    </view>
+    <view entity="petagram_User" name="user-browse-view" extends="_local">
+        <property name="user" view="_minimal"/>
+        <property name="pic" view="_minimal"/>
+        <property name="comment" view="_minimal">
+            <property name="post" view="_minimal">
+                <property name="text"/>
+                <property name="pic" view="_minimal"/>
+                <property name="date"/>
+                <property name="user" view="_minimal"/>
+            </property>
+        </property>
+    </view>
+    <view entity="petagram_Post" name="post-view" extends="_local">
+        <property name="pic" view="_minimal"/>
+        <property name="user" view="_minimal">
+            <property name="user" view="_minimal"/>
+            <property name="pic" view="_minimal"/>
+        </property>
+        <property name="comment" view="_minimal">
+            <property name="user" view="_minimal">
+                <property name="user" view="_minimal"/>
+                <property name="pic" view="_minimal"/>
+            </property>
+        </property>
+    </view>
+    <view entity="petagram_Comment" name="comment-view" extends="_local">
+        <property name="user" view="_minimal">
+            <property name="user" view="_minimal"/>
+            <property name="pic" view="_minimal"/>
+        </property>
+        <property name="post" view="_minimal">
+            <property name="text"/>
+            <property name="pic" view="_minimal"/>
+            <property name="date"/>
+            <property name="user" view="_minimal">
+                <property name="user" view="_minimal"/>
+                <property name="pic" view="_minimal"/>
+            </property>
+        </property>
+    </view>
+</views>

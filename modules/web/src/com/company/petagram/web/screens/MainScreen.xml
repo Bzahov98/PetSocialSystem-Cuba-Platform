@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://caption"
+        messagesPack="com.company.petagram.web.screens">
+    <data>
+        <instance id="postDC" class="com.company.petagram.entity.Post" view="post-view">
+            <loader id="postL"/>
+        </instance>
+        <collection id="commentDc" class="com.company.petagram.entity.Comment" view="comment-view">
+            <loader id="commentDl">
+                <query>
+                    <![CDATA[
+                        select c from petagram_Comment c
+                        where c.post.id = :postId
+                        order by c.date desc
+                    ]]>
+                </query>
+            </loader>
+        </collection>
+
+        <!--<collection id="userDc" class="com.company.petagram.entity.User" view="user-browse-view">
+            <loader id="userDL">
+                <query>
+                    <![CDATA[
+                        select u from petagram_User u
+                        where user.id = :sysUserID
+                    ]]>
+                </query>
+            </loader>
+        </collection> -->
+
+    </data>
+    <layout height="100%" width="100%">
+        <split id="horsSplit" orientation="horizontal" width="100%" height="100%" pos="60">
+            <split id="vertSplit" height="100%" width="100%" orientation="vertical" pos="45">
+
+                <grid spacing="true" width="100%" height="100%" margin="0" align="MIDDLE_CENTER">
+                    <columns>
+                        <column flex="1"/>
+                        <column flex="10"/>
+                        <column flex="1"/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <button id="previousPost" width="100%" align="MIDDLE_CENTER" height="100%" responsive="true"
+                                    caption="Prev"/>
+                            <textField id="postField" width="100%" height="100%"
+                                       editable="false" align="MIDDLE_CENTER" datatype="string" dataContainer="postDC"
+                                       property="text" responsive="true"/>
+                            <button id="nextPost" width="100%" align="MIDDLE_LEFT" height="100%" responsive="true"
+                                    caption="Next"/>
+                        </row>
+                    </rows>
+                </grid>
+                <image id="postImage" width="100%" height="100%" dataContainer="postDC" property="pic"/>
+            </split>
+            <split id="commentsSplit" width="100%" height="100%"
+                   orientation="vertical" pos="70" responsive="true">
+                <table id="commentTable" width="100%" height="100%" dataContainer="commentDc" responsive="true">
+                    <columns>
+                        <column id="user.pic" caption="User avatar"/>
+                        <column id="text"/>
+                        <column id="date" dateFormat="HH:mm DD:MM:YY"/>
+                    </columns>
+                </table>
+                <grid spacing="true" width="100%" height="100%">
+                    <columns>
+                        <column flex="3"/>
+                        <column flex="1"/>
+                    </columns>
+                    <rows>
+                        <row>
+                            <textArea id="newCommTextArea" align="MIDDLE_LEFT" caption="Add new comment:" width="100%"
+                                      datatype="string"/>
+                            <button id="sendCM" width="100%" align="MIDDLE_LEFT" height="30%" caption="send"/>
+                        </row>
+                    </rows>
+                </grid>
+            </split>
+
+        </split>
+    </layout>
+</window>

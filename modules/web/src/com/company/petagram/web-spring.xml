@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:gui="http://schemas.haulmont.com/cuba/spring/cuba-gui.xsd">
+
+    <!-- Annotation-based beans -->
+    <context:component-scan base-package="com.company.petagram"/>
+    
+    <gui:screens base-packages="com.company.petagram.web"/>
+    <bean id="petagram_proxyCreator" class="com.haulmont.cuba.web.sys.remoting.WebRemoteProxyBeanCreator">
+        <property name="serverSelector" ref="cuba_ServerSelector"/>
+        <property name="remoteServices">
+            <map>
+                <entry key="petagram_AddNewCommentService" value="com.company.petagram.service.AddNewCommentService"/>
+                <entry key="petagram_GetEntityUserService" value="com.company.petagram.service.GetEntityUserService"/>
+            </map>
+        </property>
+    </bean>
+
+</beans>
